@@ -1,0 +1,11 @@
+@import './b.css';
+body{
+    background: red;
+
+}
+div{
+    font-size: 100x;
+    height: 100px;
+    color: red;
+    background: red;
+}
