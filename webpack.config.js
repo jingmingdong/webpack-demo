@@ -13,14 +13,18 @@ module.exports = {
                 parallel: true, //并发打包压缩多个
                 sourceMap: true //    源码映射调试   set to true if you want JS source maps
             }),
-            new uglifyjsWebpackPlugin(),
+            new uglifyjsWebpackPlugin({
+                cache:true,
+                parallel:true,
+                sourceMap:true,
+            }),
             new webpack.ProvidePlugin({
-                $:'juqery'
+                $: 'jquery'
             })
         ]
     },
     devServer: {
-        port: "8080",
+        port: "8088",
         progress: true,
         contentBase: "./dist",
     },
@@ -44,9 +48,10 @@ module.exports = {
         new miniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: "[name].css",
+            filename: "/css/[name].css",
             chunkFilename: "[id].css"
-        })
+        }),
+        
     ],
 
 
@@ -56,9 +61,24 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.html/,
+                use: 'html-withimg-loader'
+            },
+            {
+                test: /\.(jpg|png|gif)$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 1,
+                        outputPath:'/image/'
+                    },
+
+                }
+            },
+            {
                 test: /\.js$/,
-                exclude:/node_modules/,
-                include:path.resolve(__dirname,'./src'),
+                exclude: /node_modules/,
+                include: path.resolve(__dirname, './src'),
                 use: {
                     loader: "babel-loader",
                     options: {
@@ -74,7 +94,7 @@ module.exports = {
             {
                 test: /\.less/, use: [miniCssExtractPlugin.loader, 'css-loader', 'less-loader']
             },
-            
+
         ]
     }
 } 

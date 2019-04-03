@@ -1,30 +1,20 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\mian\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add Jquery
+  C:\Program Files\nodejs\node.exe C:\Users\jingmingdong\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
 
 PATH: 
-  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\MongoDB\Server\4.0\bin;C:\WINDOWS\System32\OpenSSH\;D:\Microsoft VS Code Insiders\bin;C:\Users\mian\AppData\Roaming\npm;C:\Program Files\MongoDB\Server\4.0\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;
+  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\jingmingdong\AppData\Local\Microsoft\WindowsApps;C:\Users\jingmingdong\AppData\Roaming\npm;D:\软件\Microsoft VS Code\bin;C:\Users\jingmingdong\AppData\Local\BypassRuntm
 
 Yarn version: 
-  1.12.3
+  1.13.0
 
 Node version: 
-  10.14.2
+  10.15.2
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: https://registry.npm.taobao.org/Jquery: Not found
-      at Request.params.callback [as _callback] (C:\Users\mian\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:65894:18)
-      at Request.self.callback (C:\Users\mian\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:129018:22)
-      at Request.emit (events.js:182:13)
-      at Request.<anonymous> (C:\Users\mian\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:129990:10)
-      at Request.emit (events.js:182:13)
-      at IncomingMessage.<anonymous> (C:\Users\mian\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:129912:12)
-      at Object.onceWrapper (events.js:273:13)
-      at IncomingMessage.emit (events.js:187:15)
-      at endReadableNT (_stream_readable.js:1094:12)
-      at process._tickCallback (internal/process/next_tick.js:63:19)
+  Error: ENOENT: no such file or directory, copyfile 'C:\Users\jingmingdong\AppData\Local\Yarn\Cache\v4\npm-define-property-1.0.0-769ebaaf3f4a63aad3af9e8d304c9bbe79bfb0e6\node_modules\define-property\LICENSE' -> 'D:\web\webpack-demo1\node_modules\extglob\node_modules\define-property\LICENSE'
 
 npm manifest: 
   {
@@ -38,20 +28,28 @@ npm manifest:
     },
     "devDependencies": {
       "@babel/core": "^7.4.0",
-      "@babel/polyfill": "^7.4.0",
+      "@babel/polyfill": "^7.4.3",
       "@babel/preset-env": "^7.4.2",
       "babel-loader": "^8.0.5",
       "css-loader": "^2.1.1",
+      "expose-loader": "^0.7.5",
+      "file-loader": "^3.0.1",
       "html-webpack-plugin": "^3.2.0",
+      "html-withimg-loader": "^0.1.16",
       "less": "^3.9.0",
       "less-loader": "^4.1.0",
       "mini-css-extract-plugin": "^0.5.0",
       "optimize-css-assets-webpack-plugin": "^5.0.1",
       "style-loader": "^0.23.1",
       "uglifyjs-webpack-plugin": "^2.1.2",
+      "url-loader": "^1.1.2",
       "webpack": "^4.29.6",
       "webpack-cli": "^3.3.0",
       "webpack-dev-server": "^3.2.1"
+    },
+    "dependencies": {
+      "@babel/polyfill": "^7.4.3",
+      "jquery": "^3.3.1"
     }
   }
 
@@ -2346,6 +2344,11 @@ Lockfile:
     dependencies:
       homedir-polyfill "^1.0.1"
   
+  expose-loader@^0.7.5:
+    version "0.7.5"
+    resolved "http://registry.npm.taobao.org/expose-loader/download/expose-loader-0.7.5.tgz#e29ea2d9aeeed3254a3faa1b35f502db9f9c3f6f"
+    integrity sha1-4p6i2a7u0yVKP6obNfUC25+cP28=
+  
   express@^4.16.2:
     version "4.16.4"
     resolved "http://registry.npm.taobao.org/express/download/express-4.16.4.tgz#fddef61926109e24c515ea97fd2f1bdbf62df12e"
@@ -3331,6 +3334,11 @@ Lockfile:
     version "0.1.2"
     resolved "http://registry.npm.taobao.org/isstream/download/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
     integrity sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
+  
+  jquery@^3.3.1:
+    version "3.3.1"
+    resolved "http://registry.npm.taobao.org/jquery/download/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+    integrity sha1-lYzinoHJeQ8xvneS311NlfxX+8o=
   
   js-levenshtein@^1.1.3:
     version "1.1.6"
