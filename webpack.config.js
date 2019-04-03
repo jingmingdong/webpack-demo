@@ -13,24 +13,38 @@ module.exports = {
                 parallel: true, //并发打包压缩多个
                 sourceMap: true //    源码映射调试   set to true if you want JS source maps
             }),
-            new uglifyjsWebpackPlugin(),
+            new uglifyjsWebpackPlugin({
+                cache:true,
+                parallel:true,
+                sourceMap:true,
+            }),
             new webpack.ProvidePlugin({
-                $:'juqery'
+                $: 'jquery'
             })
         ]
     },
     devServer: {
-        port: "8080",
+        port: "8088",
         progress: true,
         contentBase: "./dist",
     },
     mode: "production",
-    entry: "./src/index.js",
+    entry: ["./src/index.js"],
+    // devtool:"source-map", //源码映射  调试
+    // devtool:"eval-source-map", //源码映射  调试  产生文件  显示行和列
+    // devtool:"cheap-module-source-map", //不会产生文件 集成在打包后的文件中  不会产生列 
+    devtool:"cheap-module-eval-source-map", //不会产生文件 集成在打包后的文件中   显示行和列
     output: {
-        filename: "bundle[hash].js",
+        filename: "index.js",
         path: path.resolve(__dirname, "dist")
     },
-
+    watch:true,
+    watchOptions:{
+        poll:1000,
+        ignored:/node_modules/,
+        aggregateTimeout:500,
+        
+    },
     plugins: [ // 数组 放着webpack 插件
         new htmlWebpackPlugins({
             template: "./src/index.html",
@@ -44,9 +58,10 @@ module.exports = {
         new miniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: "[name].css",
+            filename: "/css/[name].css",
             chunkFilename: "[id].css"
-        })
+        }),
+        
     ],
 
 
@@ -56,9 +71,24 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.html/,
+                use: 'html-withimg-loader'
+            },
+            {
+                test: /\.(jpg|png|gif)$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 1,
+                        outputPath:'/image/'
+                    },
+
+                }
+            },
+            {
                 test: /\.js$/,
-                exclude:/node_modules/,
-                include:path.resolve(__dirname,'./src'),
+                exclude: /node_modules/,
+                include: path.resolve(__dirname, './src'),
                 use: {
                     loader: "babel-loader",
                     options: {
@@ -74,7 +104,7 @@ module.exports = {
             {
                 test: /\.less/, use: [miniCssExtractPlugin.loader, 'css-loader', 'less-loader']
             },
-            
+
         ]
     }
 } 
