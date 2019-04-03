@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 require("babel-polyfill");
 // import "@babel/polyfill";
+=======
+var c = require("babel-polyfill");
+// import "babel-polyfill";
+>>>>>>> 3685c39e2da76e18894d53a5cdcd7387d29e7b4d
 // import $ from "expose-loader?$!jquery";
 //（1）内联loader   expose-loader 暴露到window  
 //（2）用webpack 插件给每一个模块注入
