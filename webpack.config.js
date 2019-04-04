@@ -4,7 +4,8 @@ let htmlWebpackPlugins = require("html-webpack-plugin");
 let miniCssExtractPlugin = require('mini-css-extract-plugin');
 let optimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 let uglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
-let webpack = require("webpack")
+let webpack = require("webpack");
+let cleanWebpackPlugin = require("clean-webpack-plugin");
 module.exports = {
     optimization: {//优化
         minimizer: [
@@ -33,18 +34,18 @@ module.exports = {
     // devtool:"source-map", //源码映射  调试
     // devtool:"eval-source-map", //源码映射  调试  产生文件  显示行和列
     // devtool:"cheap-module-source-map", //不会产生文件 集成在打包后的文件中  不会产生列 
-    devtool:"cheap-module-eval-source-map", //不会产生文件 集成在打包后的文件中   显示行和列
+    // devtool:"cheap-module-eval-source-map", //不会产生文件 集成在打包后的文件中   c  显示行和列
     output: {
         filename: "index.js",
         path: path.resolve(__dirname, "dist")
     },
-    watch:true,
-    watchOptions:{
-        poll:1000,
-        ignored:/node_modules/,
-        aggregateTimeout:500,
+    // watch:true,
+    // watchOptions:{
+    //     poll:1000,
+    //     ignored:/node_modules/,
+    //     aggregateTimeout:500,
         
-    },
+    // },
     plugins: [ // 数组 放着webpack 插件
         new htmlWebpackPlugins({
             template: "./src/index.html",
@@ -61,9 +62,18 @@ module.exports = {
             filename: "/css/[name].css",
             chunkFilename: "[id].css"
         }),
-        
+        new cleanWebpackPlugin(),
+        new webpack.BannerPlugin('make 2019 Mr.jing')
     ],
 
+    resolve:{
+        alias:{//别名
+
+        },
+        mainFields:["style","main"],   //找包的时候 找package.json
+        // mainfiles:"",  //入口文件的名字
+        extensions:[],// 引入文件不加后缀  会默认找什么格式的问题
+    },
 
     //loader pre 前面执行的；loader normal 普通的loader  内联loader liader   后置loader
 
